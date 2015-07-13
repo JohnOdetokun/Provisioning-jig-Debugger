@@ -4,6 +4,7 @@ import RPi.GPIO as GPIO
 class Button:
     def __init__(self):
         GPIO.setmode(GPIO.BOARD)
+        GPIO.setwarnings(False)
         GPIO.setup(11, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
         GPIO.setup(15, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
         self.mode = 0;
@@ -20,4 +21,5 @@ class Button:
                 light.failed()
 
     def __exit__(self, type, value, traceback):
+        print("no more buttons")
         GPIO.cleanup()

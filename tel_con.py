@@ -29,10 +29,10 @@ class TelCon:
         print("erased")
 
     def load(self):
-        self.tel.sendline("flash write_image erase /media/TRANSCEND/debug/DFU_ST-Link-V2.hex")
+        self.tel.sendline("flash write_image erase /root/workspace/Provisioning-jig-Debugger/debug/DFU_ST-Link-V2.hex")
         self.tel.expect("[\s\S]*wrote[\s\S]*from file[\s\S]*")
 
-        self.tel.sendline("verify_image /media/TRANSCEND/debug/DFU_ST-Link-V2.hex")
+        self.tel.sendline("verify_image /root/workspace/Provisioning-jig-Debugger/debug/DFU_ST-Link-V2.hex")
         self.tel.expect("[\s\S]*verified[\s\S]*bytes in[\s\S]*")
         print("LOADED!")
 
