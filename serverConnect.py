@@ -1,4 +1,3 @@
-import os
 from socket import *
 class NetworkConnect:
     def __init__(self):
@@ -15,23 +14,24 @@ class NetworkConnect:
         print("Connected...")
         self.flag = True
 
-    def connection(self):
-        
+    def connection(self):        
         return self.flag
-
 
     def __enter__(self):
         return self
 
     def __exit__(self, type, value, traceback):
+        print("Servers exit sommand")
         self.conn.close()
         self.serv.close()
 
     def receive(self):
-        return self.conn.recv(buf)
+        return str(self.conn.recv(self.buf))
 
     def send(self, message):
         self.conn.send(bytes(message,'utf-8'))
         
-        
+    def exit(self):
+        self.conn.close()
+        self.serv.close()
         

@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import time
+import logging
 
 class Reset:
     def __init__(self):
@@ -7,6 +8,7 @@ class Reset:
         GPIO.setup(15,GPIO.OUT)
         GPIO.setwarnings(False)
         GPIO.output(15,1)
+        
 
     def __enter__(self):
         return self
@@ -18,9 +20,11 @@ class Reset:
         GPIO.output(15,0)
 
     def toggle(self):
-        GPIO.output(15,1)
+        self.toggleOff()
         time.sleep(1)
-        GPIO.output(15,0)
+        self.toggleOn()
+        time.sleep(3)
 
     def __exit__(self, type, value, traceback):
-        GPIO.cleanup()
+        #GPIO.cleanup()
+        logging.info("Power toggled!")
