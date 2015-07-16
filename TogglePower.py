@@ -3,7 +3,9 @@ import time
 import logging
 
 class Reset:
-    def __init__(self):
+    def __init__(self, logger=logging.getLogger(__name__)):
+        self.logger = logger
+        logging.basicConfig(level=logging.DEBUG)
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(15,GPIO.OUT)
         GPIO.setwarnings(False)
@@ -26,5 +28,4 @@ class Reset:
         time.sleep(3)
 
     def __exit__(self, type, value, traceback):
-        #GPIO.cleanup()
-        logging.info("Power toggled!")
+        logging.info("Power toggled")
