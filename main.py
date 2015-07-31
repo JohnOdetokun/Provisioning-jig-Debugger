@@ -8,6 +8,7 @@ from open_ocd import OpenOCD
 from tel_con import TelCon
 from TogglePower import Reset
 from timeout import Timeout
+import time
 
 if __name__ == '__main__':
     logging.basicConfig(format = "%(asctime)s:" + logging.BASIC_FORMAT)
@@ -15,9 +16,13 @@ if __name__ == '__main__':
     logger.setLevel(logging.DEBUG)
     while True:
         try:
+            toggle = Reset()
+            toggle.toggleOff()
             with Lights(logger.getChild('lights')) as light:  
                 with Button(logger.getChild('button')) as button:
                     button.wait_for_button_press()
+                    toggle.toggleOn()
+                    time.sleep(0.1)
                     light.busy()
                     with Timeout(seconds=20) as t:
                         try:
@@ -34,7 +39,6 @@ if __name__ == '__main__':
                             light.busyOff()
                             light.failed()
                             continue
-                        toggle = Reset()
                         toggle.toggle()
                         try:
                             with NetworkConnect(logger.getChild('network')) as connection:

@@ -17,8 +17,8 @@ class Lights:
         #fail LED
         GPIO.setup(12,GPIO.OUT)
         GPIO.output(12,0)
-        GPIO.setup(15,GPIO.OUT)
-        GPIO.output(15,1)
+        #GPIO.setup(15,GPIO.OUT)
+        #GPIO.output(15,1)
         logging.info("LEDS initialised")
         
     def __enter__(self):
