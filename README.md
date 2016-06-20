@@ -24,3 +24,5 @@ button is used to determine from a button when to begin
 the loading on to the chip(after connection to laptop is
  established)
 
+To run you can use ./main.py
+
